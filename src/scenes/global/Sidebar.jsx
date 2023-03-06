@@ -72,7 +72,6 @@ const Sidebar = () =>{
             collapsed={isCollapsed}
         >
             <Menu iconShape="square">
-                {/* Logo and menu icon*/}
                 <MenuItem
                   onClick={()=> setIsCollapsed(!isCollapsed)}
                   icon={isCollapsed ? <MenuOutlinedIcon/> : undefined}
@@ -97,7 +96,6 @@ const Sidebar = () =>{
                   </MenuItem>
 
 
-                  {/*User*/}
                   {!isCollapsed&&(
                     <Box mb="25px">
                         <Box display="flex" justifyContent="center" alignItems="center">
