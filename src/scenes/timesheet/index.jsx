@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 import {useNavigate} from 'react-router-dom';
 import ProjectsPage from "../projectspage/index";
 
+
+
 const TimeSheets = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
@@ -18,7 +20,7 @@ const TimeSheets = () => {
     const getProjectData = async () =>{
 
         try{
-            const data = axios.get("http://localhost:8080/project/findAll"
+            const data = axios.get("http://localhost:8080/timesheet/findAll"
             );
             console.log((await data).data);
             setProject((await data).data)
@@ -78,14 +80,13 @@ const TimeSheets = () => {
                             </Box>
                         )
                      }
-                    }   
-                                             
+                    }                                                
 ]
 
     return (
     <Box m="20px">
         <Header title="TIMESHEET" subtitle="List of TIMESHEETS"/>
-
+        
         <Box
             m="40px 0 0 0"
             height="75vh"
@@ -128,7 +129,7 @@ const TimeSheets = () => {
                 components={{Toolbar: GridToolbar}}
                 onRowClick={handleRowClick}
             />
-            
+
         </Box>
     </Box>);
         
