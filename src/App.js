@@ -25,6 +25,7 @@ import Calendar from "./scenes/calendar/index";
 
 function App() {
   const [theme,colorMode]= useMode();
+  console.log("hello")
   return (<ColorModeContext.Provider value={colorMode}>
     <ThemeProvider theme={theme}>
       <CssBaseline/>
