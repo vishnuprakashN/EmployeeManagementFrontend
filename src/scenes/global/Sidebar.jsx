@@ -51,20 +51,28 @@ const Sidebar = () =>{
 
     return (<Box sx={{
             "& .pro-sidebar-inner": {
-                background: `${colors.primary[400]} !important`
+                background: `${colors.navbar[100]} !important`
             },
             "& .pro-icon-wrapper": {
                 background: `transparent !important`
             },
             "& .pro-inner-item": {
-                padding: "5px 35px 5px 20px !important"
+                padding: "5px 35px 5px 20px !important",
+                color:`${colors.navbartext[100]}`
             },
             "& .pro-inner-item:hover":{
-                color: "#868dfb !important"
+                color: "#007AFF !important",
             },
             "& .pro-menu-item.active":{
-                color:"#6870fa !important"
+                borderRadius: "10px 10px 10px 10px",
+                backgroundColor: "#007AFF",
+                marginLeft:"10px",
+                marginRight:"10px",
             },
+            "& .css-1l8icbj":{
+                padding: "10px"
+            }
+            
     }}
     
     >
@@ -86,24 +94,11 @@ const Sidebar = () =>{
                             justifyContent="space-between"
                             alignItems="center"
                             ml="15px">
-                                <Typography varient="h3" color={colors.grey[100]}>
-                                    ADMINIS
-                                </Typography>
-                                <IconButton onClick={() =>setIsCollapsed(!isCollapsed)}>
-                                    <MenuOutlinedIcon/>
-                                </IconButton>
-                            </Box>
-                    )}
-                  </MenuItem>
-
-
-                  {!isCollapsed&&(
-                    <Box mb="25px">
-                        <Box display="flex" justifyContent="center" alignItems="center">
+                                <Box display="flex" justifyContent="center" alignItems="left">
                             <img
                                 alt="profile-user"
-                                width="100px"
-                                height="100px"
+                                width="50px"
+                                height="50px"
                                 src={require('../../assets/vishnu.jpg')}
                                 style={{ cursor:"pointer", borderRadius: "50%"}}
                                 />
@@ -119,6 +114,17 @@ const Sidebar = () =>{
                                 SQUARESHIFT
                             </Typography>
                         </Box>
+                                <IconButton onClick={() =>setIsCollapsed(!isCollapsed)}>
+                                    <MenuOutlinedIcon/>
+                                </IconButton>
+                            </Box>
+                    )}
+                  </MenuItem>
+
+
+                  {!isCollapsed&&(
+                    <Box mb="25px">
+                        
                     </Box>
                   )}
 
@@ -134,7 +140,7 @@ const Sidebar = () =>{
                       />
                       <Typography
                         variant="h6"
-                        color={colors.grey[300]}
+                        color={colors.grey[100]}
                         sx={{m: "15px 0 5px 20px"}}
                         >
                             Data</Typography>
@@ -155,7 +161,7 @@ const Sidebar = () =>{
                       />
                        <Typography
                         variant="h6"
-                        color={colors.grey[300]}
+                        color={colors.grey[100]}
                         sx={{m: "15px 0 5px 20px"}}
                         >
                             Projects</Typography>
@@ -196,7 +202,7 @@ const Sidebar = () =>{
                       />
                        <Typography
                         variant="h6"
-                        color={colors.grey[300]}
+                        color={colors.grey[100]}
                         sx={{m: "15px 0 5px 20px"}}
                         >
                             Analytics</Typography>
