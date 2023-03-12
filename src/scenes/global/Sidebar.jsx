@@ -58,7 +58,7 @@ const Sidebar = () =>{
             },
             "& .pro-inner-item": {
                 padding: "5px 35px 5px 20px !important",
-                color:`${colors.navbartext[100]}`
+                //color:`${colors.navbartext[100]}`
             },
             "& .pro-inner-item:hover":{
                 color: `${colors.greenAccent[400]} !important`,
@@ -66,6 +66,7 @@ const Sidebar = () =>{
             "& .pro-menu-item.active":{
                 borderRadius: "10px 10px 10px 10px",
                 backgroundColor: "#007AFF",
+                color: "#FFFFFF !important" ,
                 marginLeft:"10px",
                 marginRight:"10px",
             },
@@ -152,7 +153,7 @@ const Sidebar = () =>{
                        <Typography
                         variant="h6"
                         color={colors.grey[100]}
-                        sx={{m: "15px 0 5px 20px"}}
+                        sx={{m: "10px 0 5px 10px"}}
                         >
                             Projects</Typography>
                       <Item
@@ -193,7 +194,7 @@ const Sidebar = () =>{
                        <Typography
                         variant="h6"
                         color={colors.grey[100]}
-                        sx={{m: "15px 0 5px 20px"}}
+                        sx={{m: "19px 0 5px 10px"}}
                         >
                             Analytics</Typography>
 
@@ -222,9 +223,9 @@ const Sidebar = () =>{
                       <Typography
                         variant="h6"
                         color={colors.grey[100]}
-                        sx={{m: "15px 0 5px 20px"}}
+                        sx={{m: "10px 0 5px 10px"}}
                         >
-                            Organization</Typography>
+                            Company</Typography>
                       
                       <Item
                       title="Designations"
