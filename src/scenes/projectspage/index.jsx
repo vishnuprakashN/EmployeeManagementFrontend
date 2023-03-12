@@ -1,4 +1,4 @@
-import {Box, Button } from "@mui/material";
+import {Box, Button, Typography } from "@mui/material";
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import {tokens} from "../../theme";
 import {mockDataContacts} from "../../data/mockData";
@@ -16,7 +16,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {useNavigate} from 'react-router-dom';
-
+import StatBox from "../../components/StatBox";
 
 
 const ProjectsPage = () => {
@@ -78,6 +78,7 @@ const ProjectsPage = () => {
         }
     };
 
+
     const getTeamData = async () =>{
 
         try{
@@ -102,8 +103,172 @@ const ProjectsPage = () => {
 
     return (
     <Box m="20px">
-        <Header title="PROJECTS INFORMATION" subtitle="Project details"/>
         <Box
+            display="grid"
+            gridTemplateColumns="repeat(12, 1fr)"
+            gridAutoRows="140px"
+            gap="20px"
+        >
+            <Box
+              gridColumn="span 12"
+              backgroundColor={colors.navbar[100]}
+              display="flex"
+              alignItems="center"
+              borderRadius="10px"
+              padding="20px 20px 20px 20px"
+              justifyContent="space-between">
+                <Box paddingTop="20px">
+                 <Header title="PROJECTS INFORMATION" 
+            
+                    subtitle="Project details"/>
+                </Box>
+                <Box>
+                <Button type="button" color="secondary" variant="contained"
+                onClick={handleClickOpen}>
+                    ADD EMPLOYEES
+                </Button >
+                </Box>
+
+              </Box>
+            {/* row 1*/}
+            <Box
+              gridColumn="span 3"
+              backgroundColor={colors.navbar[100]}
+              display="flex"
+              alignItems="center"
+              borderRadius="10px"
+              justifyContent="center">
+                <StatBox
+                    title="246 H"
+                    subtitle="Logged Hours"
+                    progress="0.75"
+                    increase="+14%"
+                />
+              </Box>
+              <Box
+              gridColumn="span 3"
+              backgroundColor={colors.navbar[100]}
+              display="flex"
+              alignItems="center"
+              borderRadius="10px"
+              justifyContent="center">
+                <StatBox
+                    title="12,361"
+                    subtitle="Total revenue"
+                    progress="0.75"
+                    increase="+14%"
+                />
+              </Box>
+              <Box
+              gridColumn="span 3"
+              backgroundColor={colors.navbar[100]}
+              display="flex"
+              alignItems="center"
+              borderRadius="10px"
+              justifyContent="center">
+                <StatBox
+                    title="12,361"
+                    subtitle="Employee count"
+                    progress="0.75"
+                    increase="+14%"
+                />
+              </Box>
+              <Box
+                gridColumn="span 3"
+                gridRow="span 2"
+                borderRadius="10px"
+                backgroundColor={colors.navbar[100]}
+                
+              >
+                <Box
+                padding="20px"
+                >
+                    <Typography
+                      variant="h3"
+                      fontWeight="600"
+                      color={colors.grey[100]}
+                    >Details</Typography>
+                </Box>
+                <Box
+                padding="20px"
+                >
+                    <Typography
+                      variant="h4"
+                      fontWeight="600"
+                      color={colors.grey[100]}
+                    >Details</Typography>
+                    <Button type="button" color="secondary" variant="contained"
+                onClick={handleClickOpen}>
+                    Edit
+                </Button >
+                </Box>
+               
+              </Box>
+              {/* row 2*/ }
+              <Box
+                gridColumn="span 9"
+                gridRow="span 4"
+                borderRadius="10px"
+                backgroundColor={colors.navbar[100]}
+              >
+              <Box
+                padding="10px"
+              >
+                <Box
+                m="0 0 0 0"
+                height="80vh"
+                sx={{
+                    "& .MuiDataGrid-root":{
+                        border: "none",
+                    },
+                    "& .MuiDataGrid-cell":{
+                        borderBottom: "none",
+                    },
+                    "& .name-column--cell":{
+                        color: colors.navbar[100]
+                    },
+                    "& .MuiDataGrid-columnHeaders":{
+                        backgroundColor: colors.navbar[100],
+                        borderBottom: "none"
+                    },
+                    "& .MuiDataGrid-virtualScroller":{
+                        backgroundColor: colors.navbar[300],
+                    },
+                    "& .MuiDataGrid-footerContainer":{
+                        borderTop: "none",
+                        backgroundColor: colors.navbar[100],
+                    },  
+                    "& .MuiDataGrid-toolbarContainer .MuiButton-text":{
+                        color: `${colors.grey[100]} !important`,
+                    },
+                }}
+                     >
+                <DataGrid
+                rows={team}
+                columns={columns}
+                components={{Toolbar: GridToolbar}}
+                onRowClick={handleRowClick}
+            />
+        </Box> 
+                </Box>
+              </Box>
+              <Box
+                gridColumn="span 3"
+                gridRow="span 3"
+                borderRadius="10px"
+                backgroundColor={colors.navbar[100]}
+              >
+                <Box
+                 padding="20px"
+                >
+                    
+
+                </Box>
+              </Box>
+        
+
+        </Box>
+        {/* <Box
             m="40px 0 0 0"
             height="75vh"
             sx={{
@@ -165,7 +330,7 @@ const ProjectsPage = () => {
                 components={{Toolbar: GridToolbar}}
                 onRowClick={handleRowClick}
             />
-        </Box>
+        </Box>  */}
     </Box>);
         
 };
