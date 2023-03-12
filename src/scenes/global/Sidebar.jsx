@@ -4,7 +4,7 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import {Box, IconButton, Typography, useTheme } from '@mui/material';
 import {Link} from "react-router-dom";
 import {tokens} from "../../theme";
-
+import InputBase from "@mui/material/InputBase";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
@@ -22,7 +22,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import DomainOutlinedIcon from '@mui/icons-material/DomainOutlined';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
-
+import SearchIcon from '@mui/icons-material/Search';
 
 const Item = ({title, to, icon, selected, setSelected})=>{
     const theme = useTheme();
@@ -103,7 +103,7 @@ const Sidebar = () =>{
                                 style={{ cursor:"pointer", borderRadius: "50%"}}
                                 />
                         </Box>
-                        <Box textAlign="center">
+                        <Box textAlign="center" justifyContent="center">
                             <Typography
                                 varient="h2"
                                 color={colors.grey[100]}
@@ -123,8 +123,18 @@ const Sidebar = () =>{
 
 
                   {!isCollapsed&&(
-                    <Box mb="25px">
-                        
+                    <Box mb="20px" ml="20px" mr="20px" >
+                        <Box display="flex"
+                     backgroundColor={colors.primary[400]}
+                     borderRadius="10px"
+                         >
+                            <InputBase sx={{ml:2, flex:1,padding:"6px"}} placeholder="Search"/>
+                            <IconButton type="button" sx={{p:1}}>
+                                
+                                <SearchIcon/>
+                            </IconButton>
+                         </Box>
+                        {/* <IconButton></IconButton> */}
                     </Box>
                   )}
 
