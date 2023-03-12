@@ -61,7 +61,7 @@ const Sidebar = () =>{
                 color:`${colors.navbartext[100]}`
             },
             "& .pro-inner-item:hover":{
-                color: "#007AFF !important",
+                color: `${colors.greenAccent[400]} !important`,
             },
             "& .pro-menu-item.active":{
                 borderRadius: "10px 10px 10px 10px",
@@ -74,7 +74,6 @@ const Sidebar = () =>{
             }
             
     }}
-    
     >
 
         <ProSidebar 
@@ -120,7 +119,7 @@ const Sidebar = () =>{
                             </Box>
                     )}
                   </MenuItem>
-
+                
 
                   {!isCollapsed&&(
                     <Box mb="20px" ml="20px" mr="20px" >
@@ -148,27 +147,8 @@ const Sidebar = () =>{
                       selected={selected}
                       setSelected={setSelected}
                       />
-                      <Typography
-                        variant="h6"
-                        color={colors.grey[100]}
-                        sx={{m: "15px 0 5px 20px"}}
-                        >
-                            Data</Typography>
+        
                       
-                      <Item
-                      title="Designations"
-                      to="/designation"
-                      icon={<SchoolIcon/>}
-                      selected={selected}
-                      setSelected={setSelected}
-                      />
-                    <Item
-                      title="Departments"
-                      to="/department"
-                      icon={<DomainOutlinedIcon/>}
-                      selected={selected}
-                      setSelected={setSelected}
-                      />
                        <Typography
                         variant="h6"
                         color={colors.grey[100]}
@@ -239,7 +219,29 @@ const Sidebar = () =>{
                       selected={selected}
                       setSelected={setSelected}
                       />
+                      <Typography
+                        variant="h6"
+                        color={colors.grey[100]}
+                        sx={{m: "15px 0 5px 20px"}}
+                        >
+                            Organization</Typography>
+                      
+                      <Item
+                      title="Designations"
+                      to="/designation"
+                      icon={<SchoolIcon/>}
+                      selected={selected}
+                      setSelected={setSelected}
+                      />
+                    <Item
+                      title="Departments"
+                      to="/department"
+                      icon={<DomainOutlinedIcon/>}
+                      selected={selected}
+                      setSelected={setSelected}
+                      />
                   </Box>
+
             </Menu>
         </ProSidebar>
     </Box>
