@@ -24,6 +24,8 @@ import TimeSheetForm from './scenes/addtimesheet/index';
 import Calendar from "./scenes/calendar/index";
 import Profile from './scenes/employee/profile';
 import Profile2 from './scenes/employee/profile2';
+import AddEmployee from './scenes/employee/addEmployee';
+import UserProfilePage from './scenes/employee/userProfilePage';
 
 
 function App() {
@@ -54,6 +56,7 @@ function App() {
           <Route path="/addtimesheet" element={<TimeSheetForm/>}/>
           <Route path="/calendar" element={<Calendar/>}/>
           <Route path="/employee" element = {<Profile2/>}/>
+          <Route path="/userProfilePage" element={<UserProfilePage/>}></Route>
           </Routes>
         </main>
       </div>

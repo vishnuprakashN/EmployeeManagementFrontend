@@ -19,10 +19,11 @@ import {useNavigate} from 'react-router-dom';
 import StatBox from "../../components/StatBox";
 
 
-const Profile2 = () => {
+const UserProfilePage = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [team, setTeam] = useState([]);
+    const [openBasicInfo,setBasicInfo] = useState(false)
 
     const location = useLocation();
 
@@ -30,6 +31,9 @@ const Profile2 = () => {
 
     const [myValue, setValue] = useState('') 
 
+    const handleBasicInfo = () => {
+      setBasicInfo(true)
+    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -99,56 +103,67 @@ const Profile2 = () => {
                     {field:"project", headerName: "Project", type: "number",headerAlign:"left",align:"left",},
                               
 ]
+
+
     return (
     <Box m="20px">
+          <Box   
+              backgroundColor={colors.navbar[100]}
+              display="flex"
+              borderRadius="10px"
+              padding="20px 20px 20px 20px"
+              >
+                 <Box display="flex" justifyContent="center" alignItems="left">
+                            <img
+                                alt="profile-user"
+                                width="60px"
+                                height="60px"
+                                src={require('../../assets/vishnu.jpg')}
+                                style={{ cursor:"pointer", borderRadius: "50%"}}
+                                />
+                  </Box>
+                  <Box marginLeft="20px">
+                            <Typography
+                                varient="h2"
+                                color={colors.grey[100]}
+                                fontWeight="bold"
+                                sx={{m: "10px 0 0 0"}}
+                                >Vishnu prakash</Typography>
+                            <Typography varient = "h5" color={colors.greenAccent[500]}>
+                                vishnu@gmail.com
+                            </Typography>
+                    </Box>
+                    
+          </Box>
+          <Box   
+              backgroundColor={colors.navbar[100]}
+              display="flex"
+              borderRadius="10px"
+              padding="10px 10px 10px 10px"
+            marginTop="1%"
+              >
+                    <Box>
+                      <Button style={{marginRight:"5px",borderRadius:"50px"}} sx={{'&:hover':{backgroundColor:"lightblue"}}} onClick={handleBasicInfo}>Profile</Button>
+                      <Button style={{marginRight:"5px",borderRadius:"50px"}} sx={{'&:hover':{backgroundColor:"lightblue"}}}>Files</Button>
+                    </Box>
+
+          </Box>
+              
         <Box
             display="grid"
             gridTemplateColumns="repeat(12, 1fr)"
             gridAutoRows="140px"
             gap="20px"
         >
-            <Box
-              gridColumn="span 12"
-              backgroundColor={colors.navbar[100]}
-              display="flex"
-              alignItems="center"
-              borderRadius="10px"
-              padding="20px 20px 20px 20px"
-              justifyContent="space-between">
-                <Box paddingTop="20px">
-                 <Header title="Employee INFORMATION" />
-                </Box>
-                <Box>
-                <Button type="button" color="secondary" variant="contained" onClick={() => {
-            navigate("/userProfilePage")
-         }}
-                >
-                    ADD EMPLOYEES
-                </Button >
-                </Box>
-
-              </Box>
+            
             {/* row 1*/}
-           {/* <Box
-              gridColumn="span 3"
-              backgroundColor={colors.navbar[100]}
-              display="flex"
-              alignItems="center"
-              borderRadius="10px"
-              justifyContent="center">
-                <StatBox
-                    title="246 H"
-                    subtitle="Logged Hours"
-                    progress="0.75"
-                    increase="+14%"
-                />
-    </Box> */}
-              <Box
+          
+        <Box
                 gridColumn="span 3"
                 gridRow="span 2"
                 borderRadius="10px"
                 backgroundColor={colors.navbar[100]}
-                
+                marginTop="5%"
               >
                 <Box
                 padding="20px"
@@ -157,76 +172,69 @@ const Profile2 = () => {
                       variant="h3"
                       fontWeight="600"
                       color={colors.grey[100]}
-                    >Details</Typography>
+                    >About Me</Typography>
                 </Box>
               </Box>
-              {/* row 2*/ }
+             {openBasicInfo && (
+             <>
               <Box
-                gridColumn="span 9"
-                gridRow="span 4"
+                gridColumn="span 3"
+                gridRow="span 2"
                 borderRadius="10px"
                 backgroundColor={colors.navbar[100]}
-              >
-              <Box
-                padding="10px"
+                marginTop="5%"
               >
                 <Box
-                m="0 0 0 0"
-                height="80vh"
-                sx={{
-                    "& .MuiDataGrid-root":{
-                        border: "none",
-                    },
-                    "& .MuiDataGrid-cell":{
-                        borderBottom: "none",
-                    },
-                    "& .name-column--cell":{
-                        color: colors.navbar[100]
-                    },
-                    "& .MuiDataGrid-columnHeaders":{
-                        backgroundColor: colors.navbar[100],
-                        borderBottom: "none"
-                    },
-                    "& .MuiDataGrid-virtualScroller":{
-                        backgroundColor: colors.navbar[300],
-                    },
-                    "& .MuiDataGrid-footerContainer":{
-                        borderTop: "none",
-                        backgroundColor: colors.navbar[100],
-                    },  
-                    "& .MuiDataGrid-toolbarContainer .MuiButton-text":{
-                        color: `${colors.grey[100]} !important`,
-                    },
-                }}
-                     >
-                <DataGrid
-                rows={team}
-                columns={columns}
-                components={{Toolbar: GridToolbar}}
-                onRowClick={handleRowClick}
-            />
-        </Box> 
+                padding="20px"
+                >
+                    <Typography
+                      variant="h3"
+                      fontWeight="600"
+                      color={colors.grey[100]}
+                    >Basic Info</Typography>
                 </Box>
               </Box>
               <Box
-              gridColumn="span 3"
-              backgroundColor={colors.navbar[100]}
-              display="flex"
-              alignItems="center"
-              borderRadius="10px"
-              justifyContent="center">
-                <StatBox
-                    title="246 H"
-                    subtitle="Logged Hours"
-                    progress="0.75"
-                    increase="+14%"
-                />
-    </Box>
-
-        </Box>
-    </Box>);
+                gridColumn="span 3"
+                gridRow="span 2"
+                borderRadius="10px"
+                backgroundColor={colors.navbar[100]}
+                marginTop="5%"
+              >
+                <Box
+                padding="20px"
+                >
+                    <Typography
+                      variant="h3"
+                      fontWeight="600"
+                      color={colors.grey[100]}
+                    >Work Info</Typography>
+                </Box>
+              </Box>
+              <Box
+                gridColumn="span 3"
+                gridRow="span 2"
+                borderRadius="10px"
+                backgroundColor={colors.navbar[100]}
+                marginTop="5%"
+              >
+                <Box
+                padding="20px"
+                >
+                    <Typography
+                      variant="h3"
+                      fontWeight="600"
+                      color={colors.grey[100]}
+                    >Personal Info</Typography>
+                </Box>
+              </Box> 
+              </>
+             )}
+            </Box>
+           </Box>
+    )
         
 };
 
 
-export default Profile2;
+export default UserProfilePage;

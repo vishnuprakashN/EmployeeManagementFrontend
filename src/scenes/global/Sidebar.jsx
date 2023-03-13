@@ -163,7 +163,7 @@ const Sidebar = () =>{
                       selected={selected}
                       setSelected={setSelected}
                       />
-                       <Item
+                       {/* <Item
                       title="Jobs Scheduler"
                       to="/calendar"
                       icon={<CalendarTodayOutlinedIcon/>}
@@ -176,7 +176,7 @@ const Sidebar = () =>{
                       icon={<WorkOutlineIcon/>}
                       selected={selected}
                       setSelected={setSelected}
-                      />
+                      /> */}
                       <Item
                       title="TimeSheets"
                       to="/timesheet"
