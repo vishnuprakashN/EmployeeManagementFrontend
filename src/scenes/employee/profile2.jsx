@@ -1,4 +1,4 @@
-import {Box, Button, Typography } from "@mui/material";
+import {Box, Button, Select, Typography,FormControl,MenuItem,InputLabel} from "@mui/material";
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import {tokens} from "../../theme";
 import {mockDataContacts} from "../../data/mockData";
@@ -17,19 +17,33 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {useNavigate} from 'react-router-dom';
 import StatBox from "../../components/StatBox";
+import ProfileListView from "./profileListView";
 
 
 const Profile2 = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [team, setTeam] = useState([]);
+    const [employeeView,setEmployeeView] = useState("")
+    const [openEmployeeList,setOpenEmployeeList] = useState(false)
+    const [openProfileList,setOpenProfileList] = useState(false)
 
     const location = useLocation();
 
     const [open, setOpen] = React.useState(false);
 
     const [myValue, setValue] = useState('') 
-
+    const handleEmployeeView = (event) => {
+        setEmployeeView(event.target.value)
+    }
+    const handleEmployeeDashboard = () => {
+      setOpenEmployeeList(true)
+      setOpenProfileList(false)
+    }
+    const handleProfileList = () => {
+      setOpenProfileList(true)
+      setOpenEmployeeList(false)
+    }
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -116,7 +130,18 @@ const Profile2 = () => {
               padding="20px 20px 20px 20px"
               justifyContent="space-between">
                 <Box paddingTop="20px">
-                 <Header title="Employee INFORMATION" />
+                 <Header title="Employee Information" />
+                 <Box width={"50%"} marginBottom={"8%"}>
+                 <FormControl fullWidth>
+  <InputLabel>Employee View</InputLabel>
+  <Select
+    label="Employee View" onChange={handleEmployeeView} sx={{borderRadius:"10px",border:0}}
+  >
+    <MenuItem value={"Employee Dashboard"} onClick={handleEmployeeDashboard}>Employee Dashboard</MenuItem>
+    <MenuItem value={"Profile List"} onClick={handleProfileList}>Profile List</MenuItem>
+  </Select>
+</FormControl>
+</Box>
                 </Box>
                 <Box>
                 <Button type="button" color="secondary" variant="contained" onClick={() => {
@@ -126,7 +151,6 @@ const Profile2 = () => {
                     ADD EMPLOYEES
                 </Button >
                 </Box>
-
               </Box>
             {/* row 1*/}
            {/* <Box
@@ -142,8 +166,8 @@ const Profile2 = () => {
                     progress="0.75"
                     increase="+14%"
                 />
-    </Box> */}
-              <Box
+        </Box> */}
+     <Box
                 gridColumn="span 3"
                 gridRow="span 2"
                 borderRadius="10px"
@@ -160,7 +184,6 @@ const Profile2 = () => {
                     >Details</Typography>
                 </Box>
               </Box>
-              {/* row 2*/ }
               <Box
                 gridColumn="span 9"
                 gridRow="span 4"
@@ -222,6 +245,93 @@ const Profile2 = () => {
                     increase="+14%"
                 />
     </Box>
+    {openProfileList  && (
+      <>
+      {navigate("/employee/profilelistview")}
+      </>
+    )}
+{openEmployeeList && (
+  <>
+              <Box
+                gridColumn="span 3"
+                gridRow="span 2"
+                borderRadius="10px"
+                backgroundColor={colors.navbar[100]}
+                
+              >
+                <Box
+                padding="20px"
+                >
+                    <Typography
+                      variant="h3"
+                      fontWeight="600"
+                      color={colors.grey[100]}
+                    >Details</Typography>
+                </Box>
+              </Box>
+              <Box
+                gridColumn="span 9"
+                gridRow="span 4"
+                borderRadius="10px"
+                backgroundColor={colors.navbar[100]}
+              >
+              <Box
+                padding="10px"
+              >
+                <Box
+                m="0 0 0 0"
+                height="80vh"
+                sx={{
+                    "& .MuiDataGrid-root":{
+                        border: "none",
+                    },
+                    "& .MuiDataGrid-cell":{
+                        borderBottom: "none",
+                    },
+                    "& .name-column--cell":{
+                        color: colors.navbar[100]
+                    },
+                    "& .MuiDataGrid-columnHeaders":{
+                        backgroundColor: colors.navbar[100],
+                        borderBottom: "none"
+                    },
+                    "& .MuiDataGrid-virtualScroller":{
+                        backgroundColor: colors.navbar[300],
+                    },
+                    "& .MuiDataGrid-footerContainer":{
+                        borderTop: "none",
+                        backgroundColor: colors.navbar[100],
+                    },  
+                    "& .MuiDataGrid-toolbarContainer .MuiButton-text":{
+                        color: `${colors.grey[100]} !important`,
+                    },
+                }}
+                     >
+                <DataGrid
+                rows={team}
+                columns={columns}
+                components={{Toolbar: GridToolbar}}
+                onRowClick={handleRowClick}
+            />
+        </Box> 
+                </Box>
+              </Box>
+              <Box
+              gridColumn="span 3"
+              backgroundColor={colors.navbar[100]}
+              display="flex"
+              alignItems="center"
+              borderRadius="10px"
+              justifyContent="center">
+                <StatBox
+                    title="246 H"
+                    subtitle="Logged Hours"
+                    progress="0.75"
+                    increase="+14%"
+                />
+    </Box>
+    </>
+)}
 
         </Box>
     </Box>);
