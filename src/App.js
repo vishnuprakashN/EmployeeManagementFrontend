@@ -22,6 +22,9 @@ import BarGraph from './scenes/bargraph/index';
 import TimeSheets from './scenes/timesheet/index';
 import TimeSheetForm from './scenes/addtimesheet/index';
 import Calendar from "./scenes/calendar/index";
+import Profile from './scenes/employee/profile';
+import Profile2 from './scenes/employee/profile2';
+
 
 function App() {
   const [theme,colorMode]= useMode();
@@ -50,6 +53,7 @@ function App() {
           <Route path="/timesheet" element={<TimeSheets/>}/>
           <Route path="/addtimesheet" element={<TimeSheetForm/>}/>
           <Route path="/calendar" element={<Calendar/>}/>
+          <Route path="/employee" element = {<Profile2/>}/>
           </Routes>
         </main>
       </div>

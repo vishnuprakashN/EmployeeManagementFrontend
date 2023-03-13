@@ -226,7 +226,13 @@ const Sidebar = () =>{
                         sx={{m: "10px 0 5px 10px"}}
                         >
                             Company</Typography>
-                      
+                     <Item
+                      title="Employee"
+                      to="/employee"
+                      icon={<SchoolIcon/>}
+                      selected={selected}
+                      setSelected={setSelected}
+                      />
                       <Item
                       title="Designations"
                       to="/designation"
