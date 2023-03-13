@@ -82,7 +82,7 @@ const ProjectsPage = () => {
     const getTeamData = async () =>{
 
         try{
-            const data = axios.get("http://localhost:8080/project/findAll/teams/" + location.state.id
+            const data = axios.get("http://localhost:8080/project/findAllEmployee/" + location.state.id
             );
             console.log((await data).data);
             setTeam((await data).data)
@@ -95,7 +95,7 @@ const ProjectsPage = () => {
     },[])
     
     const columns = [
-                    {field:"name", headerName:"Teams", flex: 1, cellClassName: "name-column-cell"},   
+                    {field:"name", headerName:"Name", flex: 1, cellClassName: "name-column-cell"},   
                     {field:"project", headerName: "Project", type: "number",headerAlign:"left",align:"left",},
                               
 ]
@@ -118,7 +118,7 @@ const ProjectsPage = () => {
               padding="20px 20px 20px 20px"
               justifyContent="space-between">
                 <Box paddingTop="20px">
-                 <Header title="PROJECTS INFORMATION" 
+                 <Header title="PROJECT INFORMATION" 
             
                     subtitle="Project details"/>
                 </Box>

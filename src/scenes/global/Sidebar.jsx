@@ -158,7 +158,7 @@ const Sidebar = () =>{
                             Projects</Typography>
                       <Item
                       title="Manage Projects"
-                      to="/projectspage"
+                      to="/projects"
                       icon={<PeopleOutlinedIcon/>}
                       selected={selected}
                       setSelected={setSelected}
@@ -184,13 +184,13 @@ const Sidebar = () =>{
                       selected={selected}
                       setSelected={setSelected}
                       />
-                      <Item
+                      {/* <Item
                       title="Time Logs"
                       to=""
                       icon={<PendingActionsIcon/>}
                       selected={selected}
                       setSelected={setSelected}
-                      />
+                      /> */}
                        <Typography
                         variant="h6"
                         color={colors.grey[100]}
