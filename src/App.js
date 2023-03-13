@@ -57,6 +57,7 @@ function App() {
           <Route path="/addtimesheet" element={<TimeSheetForm/>}/>
           <Route path="/calendar" element={<Calendar/>}/>
           <Route path="/employee" element = {<Profile2/>}/>
+          <Route path="/employee/profilelistview" element = {<ProfileListView/>}/>
           </Routes>
         </main>
       </div>

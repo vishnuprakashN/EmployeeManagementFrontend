@@ -228,7 +228,7 @@ const Sidebar = () =>{
                             Company</Typography>
                      <Item
                       title="Employee"
-                      to="/employee/profilelist"
+                      to="/employee/profilelistview"
                       icon={<SchoolIcon/>}
                       selected={selected}
                       setSelected={setSelected}
