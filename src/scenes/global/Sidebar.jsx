@@ -99,7 +99,7 @@ const Sidebar = () =>{
                                 alt="profile-user"
                                 width="50px"
                                 height="50px"
-                                src={require('../../assets/vishnu.jpg')}
+                                src={require('../../assets/rosee.jpg')}
                                 style={{ cursor:"pointer", borderRadius: "50%"}}
                                 />
                         </Box>
@@ -158,7 +158,7 @@ const Sidebar = () =>{
                             Projects</Typography>
                       <Item
                       title="Manage Projects"
-                      to="/projects"
+                      to="/projectspage"
                       icon={<PeopleOutlinedIcon/>}
                       selected={selected}
                       setSelected={setSelected}
@@ -228,7 +228,7 @@ const Sidebar = () =>{
                             Company</Typography>
                      <Item
                       title="Employee"
-                      to="/employee"
+                      to="/employee/profilelist"
                       icon={<SchoolIcon/>}
                       selected={selected}
                       setSelected={setSelected}
