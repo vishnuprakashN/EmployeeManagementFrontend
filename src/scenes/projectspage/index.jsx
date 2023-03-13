@@ -178,7 +178,6 @@ const ProjectsPage = () => {
                 gridRow="span 2"
                 borderRadius="10px"
                 backgroundColor={colors.navbar[100]}
-                
               >
                 <Box
                 padding="20px"
