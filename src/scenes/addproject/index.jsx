@@ -43,7 +43,7 @@ const userSchema = yup.object().shape({
 const setProjectData = async (values) =>{
 
     try{
-        axios.post("http://localhost:8080/project/add",values)
+        axios.post("http://localhost:8080/projects/add",values)
         .then(function (response) {
             console.log(response);
           });
@@ -65,8 +65,23 @@ const ProjectForm = () => {
     const navigate = useNavigate();
 
     const StatusOptions = ['ONGOING','COMPLETED'];
-
     const TypeOptions = ['TM','PB','RT'];
+    const[projectName,setProjectName] = useState("")
+    const[startDate,setStartDate] = useState()
+    const[endDate,setEndDate] = useState()
+    const[description,setDescription] = useState("")
+    const handleName = (event) => {
+        setProjectName(event.target.value)
+    } 
+    const handleStartDate = (event) => {
+        setStartDate(event.target.value)
+    }
+    const handleEndDate = (event) => {
+        setEndDate(event.target.value)
+    }
+    const handleDescription = (event) => {
+        setDescription(event.target.value)
+    }
 
 
 
@@ -77,7 +92,7 @@ const ProjectForm = () => {
         initialValues={initialValues}
         validationSchema={userSchema}
         >
-            {({ values, errors, touched, handleBlur, handleChange, handleSubmit}) => (
+            {({ values, errors, touched, handleBlur, handleSubmit}) => (
                 <form onSubmit={handleSubmit}>
                     <Box display="grid"
                          gap="30px" 
@@ -92,7 +107,7 @@ const ProjectForm = () => {
                             type="text"
                             label="Project Name"
                             onBlur={handleBlur}
-                            onChange={handleChange}
+                            onChange={handleName}
                             value={values.name}
                             name="name"
                             error={!!touched.name && !!errors.name}
@@ -159,7 +174,7 @@ const ProjectForm = () => {
                             type="text"
                             label="Start Date"
                             onBlur={handleBlur}
-                            onChange={handleChange}
+                            onChange={handleStartDate}
                             value={values.startDate}
                             name="startDate"
                             error={!!touched.startDate && !!errors.startDate}
@@ -172,7 +187,7 @@ const ProjectForm = () => {
                             type="text"
                             label="End Date"
                             onBlur={handleBlur}
-                            onChange={handleChange}
+                            onChange={handleEndDate}
                             value={values.endDate}
                             name="endDate"
                             error={!!touched.endDate && !!errors.endDate}
@@ -183,9 +198,9 @@ const ProjectForm = () => {
                             fullWidth
                             variant="filled"
                             type="text"
-                            label="Valuation"
+                            label="Project Description"
                             onBlur={handleBlur}
-                            onChange={handleChange}
+                            onChange={handleDescription}
                             value={values.valuation}
                             name="valuation"
                             error={!!touched.valuation && !!errors.valuation}

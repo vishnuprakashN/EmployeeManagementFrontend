@@ -17,6 +17,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {useNavigate} from 'react-router-dom';
 import StatBox from "../../components/StatBox";
+import AddUsers from "./addUsers";
 
 
 const ProjectsPage = () => {
@@ -29,6 +30,7 @@ const ProjectsPage = () => {
     const [open, setOpen] = React.useState(false);
 
     const [myValue, setValue] = useState('') 
+    const[openAddEmpForm,setOpenAddEmpForm] = useState(false)
 
 
     const handleClickOpen = () => {
@@ -39,6 +41,12 @@ const ProjectsPage = () => {
        
         setOpen(false)
       };
+    const handleDialog = () => {
+        setOpenAddEmpForm(true)
+    }
+    const handleCloseDialog = () => {
+        setOpenAddEmpForm(false)
+    }
     const navigate = useNavigate();
 
 
@@ -123,12 +131,11 @@ const ProjectsPage = () => {
                     subtitle="Project details"/>
                 </Box>
                 <Box>
-                <Button type="button" color="secondary" variant="contained"
-                onClick={handleClickOpen}>
+                <Button type="button" color="secondary" variant="contained" onClick={handleDialog}>
                     ADD EMPLOYEES
                 </Button >
+                {openAddEmpForm ? <AddUsers onClose={handleCloseDialog}/> : null}
                 </Box>
-
               </Box>
             {/* row 1*/}
             <Box

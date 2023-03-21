@@ -80,8 +80,8 @@ function ProfileListView() {
           <Box paddingTop="20px">
             <Header title="EMPLOYEES" />
             <Box width={"85%"} marginBottom={"8%"}>
-            <FormControl fullWidth>
-              <InputLabel>Employee View</InputLabel>
+            <FormControl  variant="standard" fullWidth>
+              <InputLabel >Employee View</InputLabel>
               <Select
                 label="Employee View" onChange={handleEmployeeView} sx={{borderRadius:"10px"}}
               >

@@ -104,7 +104,9 @@ const Projects = () => {
                     subtitle="Projects Data"/>
                 </Box>
                 <Box>
-                <Button type="button" color="secondary" variant="contained"
+                <Button type="button" color="secondary" variant="contained" onClick={() => {
+            navigate("/addproject")
+         }}
                     >
                     ADD PROJECT
                 </Button >
@@ -151,13 +153,13 @@ const Projects = () => {
                 },
             }}
         >
-            {/* <Button type="submit" color="secondary" variant="contained" 
+           {/*  <Button type="submit" color="secondary" variant="contained" 
         
         onClick={() => {
             navigate("/addproject")
          }}>
             Create New Project
-        </Button > */}
+        </Button >  */ }
             <DataGrid
                 rows={project}
                 columns={columns}

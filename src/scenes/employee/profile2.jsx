@@ -132,7 +132,7 @@ const Profile2 = () => {
                 <Box paddingTop="20px">
                  <Header title="Employee Information" />
                  <Box width={"50%"} marginBottom={"8%"}>
-                 <FormControl fullWidth>
+                 <FormControl variant="standard" fullWidth>
   <InputLabel>Employee View</InputLabel>
   <Select
     label="Employee View" onChange={handleEmployeeView} sx={{borderRadius:"10px",border:0}}

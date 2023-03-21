@@ -27,6 +27,8 @@ import Profile2 from './scenes/employee/profile2';
 import AddEmployee from './scenes/employee/addEmployee';
 import UserProfilePage from './scenes/employee/userProfilePage';
 import ProfileListView from './scenes/employee/profileListView';
+import AddProject from './scenes/addproject/addProject';
+import AddUsers from './scenes/projectspage/addUsers';
 
 
 function App() {
@@ -44,7 +46,7 @@ function App() {
           <Route path="/projectspage" element={<ProjectsPage/>}/>
           <Route path="/projects" element={<Projects/>}/> 
           <Route path="/form" element={<Form/>}/> 
-          <Route path="/addproject" element={<ProjectForm/>}/> 
+          <Route path="/addproject" element={<AddProject/>}/> 
           <Route path="/teamspage" element={<TeamsPage/>}/> 
           <Route path="/department" element={<Department/>}/> 
           <Route path="/designation" element={<Designation/>}/> 
@@ -58,6 +60,7 @@ function App() {
           <Route path="/calendar" element={<Calendar/>}/>
           <Route path="/employee" element = {<Profile2/>}/>
           <Route path="/employee/profilelistview" element = {<ProfileListView/>}/>
+          <Route path="/addUsers" element={<AddUsers/>}></Route>
           </Routes>
         </main>
       </div>

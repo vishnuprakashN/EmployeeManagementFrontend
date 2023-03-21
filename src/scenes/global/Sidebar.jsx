@@ -109,7 +109,7 @@ const Sidebar = () =>{
                                 color={colors.grey[100]}
                                 fontWeight="bold"
                                 sx={{m: "10px 0 0 0"}}
-                                >Vishnu prakash</Typography>
+                                >Jeyaroshini</Typography>
                             <Typography varient = "h5" color={colors.greenAccent[500]}>
                                 SQUARESHIFT
                             </Typography>
