@@ -23,6 +23,7 @@ import DomainOutlinedIcon from '@mui/icons-material/DomainOutlined';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import SearchIcon from '@mui/icons-material/Search';
+import Topbar from "./Topbar";
 
 const Item = ({title, to, icon, selected, setSelected})=>{
     const theme = useTheme();
@@ -72,11 +73,9 @@ const Sidebar = () =>{
             },
             "& .css-1l8icbj":{
                 padding: "10px"
-            }
-            
+            }   
     }}
     >
-
         <ProSidebar 
             collapsed={isCollapsed}
         >
@@ -120,8 +119,6 @@ const Sidebar = () =>{
                             </Box>
                     )}
                   </MenuItem>
-                
-
                   {!isCollapsed&&(
                     <Box mb="20px" ml="20px" mr="20px" >
                         <Box display="flex"
@@ -137,8 +134,6 @@ const Sidebar = () =>{
                         {/* <IconButton></IconButton> */}
                     </Box>
                   )}
-
-
                   {/* Menu Items */}
                   <Box paddingLeft={isCollapsed ? undefined: "10%"}>
                     <Item
@@ -148,8 +143,6 @@ const Sidebar = () =>{
                       selected={selected}
                       setSelected={setSelected}
                       />
-        
-                      
                        <Typography
                         variant="h6"
                         color={colors.grey[100]}
@@ -248,7 +241,6 @@ const Sidebar = () =>{
                       setSelected={setSelected}
                       />
                   </Box>
-
             </Menu>
         </ProSidebar>
     </Box>

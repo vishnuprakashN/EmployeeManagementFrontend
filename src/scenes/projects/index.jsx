@@ -1,4 +1,4 @@
-import {Box, Typography, Button } from "@mui/material";
+import {Box, Typography, Button,IconButton } from "@mui/material";
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import {tokens} from "../../theme";
 import {mockDataContacts} from "../../data/mockData";
@@ -6,14 +6,20 @@ import Header from "../../components/Header";
 import { color } from "@mui/system";
 import {useTheme} from "@mui/material";
 import axios from "axios"
-import { useEffect, useState } from "react";
-import {useNavigate} from 'react-router-dom';
+import { useCallback, useEffect, useState } from "react";
+import {useNavigate,generatePath, Link} from 'react-router-dom';
 import ProjectsPage from "../projectspage/index";
+import AddTeam from "./addTeam";
+import Axios from "axios"
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const Projects = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [project, setProject] = useState([]);
+    const[modalTeam,setModalTeam] = useState()
+    const [openAddTeam,setOpenAddTeam] = useState(false)
+    const[team,setTeam] = useState([])
 
     const getProjectData = async () =>{
 
@@ -31,34 +37,50 @@ const Projects = () => {
     },[])
     
     const navigate = useNavigate();
-
-
-
     const handleRowClick = (params) => {
-        navigate("/projectspage", {
+        navigate("/addTeam", {
             state: {
-              id: params.row.id
+              id: params
             }
           });
-        console.log(params.row.id)
+        console.log(params)
     
     };
+    const handleAddTeam = async (id) => {
+        console.log(id)
+            const { data } = await Axios.get(
+              `http://192.168.100.121:8080/teams/findAll/${id}`
+            );
+            const team = data;
+            setTeam(team);
+            setOpenAddTeam(true)
+            console.log(team);
 
-    const columns = [{field: "id", headerName: "ID", flex:0.5},
+          };
+
+    const handleDelete = async (id) => {
+        console.log(id)
+    if (window.confirm("Are you sure?")) {
+        const {data} = await Axios.delete(
+            `http://192.168.100.121:8080/teams/delete/${id}`
+        )
+        const team = data;
+        setTeam(team.filter((item) => item.id !== id));
+        console.log(team)
+  }
+    }
+
+
+    const columns = [{field:"id", headerName: "ID", flex:0.5},
                     {field:"projectName", headerName:"Name", flex: 1, cellClassName: "name-column-cell"},   
-                    {field: "valuation",headerName: "Valuation",flex:1, renderCell:(params) =>
-                    (
-                        <Typography color={colors.greenAccent[500]}>
-                            ${params.row.valuation}
-                        </Typography>
-                    )},
-                    {field:"type", headerName:"Type", flex: 1},   
-                    {field:"startDate", headerName:"Start Date", flex: 1},
-                    {field:"endDate", headerName:"End Date", flex: 1},
-                    {field:"status",
-                     headerName:"Status",
+                    {field:"projectType", headerName:"Type", flex: 1},   
+                    {field:"projectDescription", headerName:"Description", flex: 1, cellClassName: "name-column-cell"},
+                    {field:"clientName", headerName:"Client Name", flex: 1},
+                    {field:"clientAddress", headerName:"Client Adddress", flex: 1},
+                    {field:"projectStatus",
+                     headerName:"Project Status",
                      flex:1,
-                     renderCell: ({row: {status}}) =>{
+                     renderCell: ({row: {projectStatus}}) =>{
                         return(
                             <Box
                               width="60%"
@@ -67,21 +89,31 @@ const Projects = () => {
                               display="flex"
                               justifyContent="center"
                               backgroundColor={
-                                status === "COMPLETED"
+                                projectStatus === "COMPLETED"
                                 ? colors.greenAccent[600]
                                 : colors.redAccent[600]
                               }
                             >
                               <Typography color={colors.grey[100]} sx={{ml: "5px"}}>
-                                {status}
+                                {projectStatus}
                               </Typography>
                             </Box>
                         )
                      }
-                    }   
-                                             
+                    },
+                    {headerName:"Action",
+                    renderCell:({row: id})=> {
+                            console.log(id)
+                        return(
+                            <>
+                            <Button variant="contained" onClick={()=>handleRowClick(id)}>Add Team</Button>
+                           </>
+                        )
+                    }}                                            
 ]
-
+const addTeam = () => {
+    navigate("/addTeam")
+}
     return (
     <Box m="20px">
         <Box
@@ -113,10 +145,73 @@ const Projects = () => {
                 </Box>
 
               </Box>
-
+           {/*  <Box
+                gridColumn="span 3"
+                gridRow="span 4"
+                borderRadius="10px"
+                backgroundColor={colors.navbar[100]}
+              >
+              <Box
+                padding="20px"
+                >
+                    <Typography
+                      variant="h3"
+                      fontWeight="600"
+                      color={colors.grey[100]}
+                    >Team Details</Typography>
+                </Box>
+                <Box
+                padding="20px"
+                >
+                    {openAddTeam && (
+                        <>
+                         {team.map((item) => {
+              return (
+                <Box
+                  gridRow="span 2"
+                  backgroundColor={colors.navbar[100]}
+                  display="flex"
+                  alignItems="center"
+                  borderRadius="10px"
+                  justifyContent="flex-start"
+                  sx={{
+                    '&:hover': {
+                      boxShadow: 3,
+                    }
+                  }}
+                >
+                  <Box>
+                  <IconButton style={{bottom:"110px",marginRight:"2px",height:"100%"}} onClick={()=>handleDelete(item.id)}>
+                    <CancelIcon sx={{color:"red"}} />
+                   </IconButton>
+                    <img
+                      alt="profile-user"
+                      width="98px"
+                      height="98px"
+                      src={require('../../assets/rosee.jpg')}
+                      style={{ cursor: "pointer", borderRadius: "50%", margin: "15px" }} /></Box>
+                  <Box>
+                    <Typography
+                      varient="h2"
+                      color={colors.grey[100]}
+                      fontWeight="bold"
+                      fontSize="17px"
+                      sx={{ m: "0 0 0 0" }}
+                    >{item.teamName}</Typography>
+                    <Typography varient="h5" color={colors.greenAccent[500]}>
+                      {item.designation}
+                    </Typography>
+                  </Box>
+                </Box>
+              );
+            })}
+                        </>
+                    )}
+                </Box>
+          </Box> */}
 
               <Box
-                gridColumn="span 9"
+                gridColumn="span 12"
                 gridRow="span 4"
                 borderRadius="10px"
                 backgroundColor={colors.navbar[100]}
@@ -164,16 +259,11 @@ const Projects = () => {
                 rows={project}
                 columns={columns}
                 components={{Toolbar: GridToolbar}}
-                onRowClick={handleRowClick}
+                getRowId={(rows) => rows.id}
             />
-            
         </Box>
-
               </Box>
             </Box>
-
-
-        
     </Box>
     </Box>);
         

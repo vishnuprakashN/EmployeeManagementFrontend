@@ -29,6 +29,9 @@ import UserProfilePage from './scenes/employee/userProfilePage';
 import ProfileListView from './scenes/employee/profileListView';
 import AddProject from './scenes/addproject/addProject';
 import AddUsers from './scenes/projectspage/addUsers';
+import AddTeam from './scenes/projects/addTeam';
+import Recommendation from './scenes/projects/recommendation';
+import FilteredEmployees from './scenes/projects/filteredEmployees';
 
 
 function App() {
@@ -39,7 +42,7 @@ function App() {
       <div className='app'>
                 <Sidebar/>
         <main className='content'>
-        <Topbar/>
+          <Topbar/>
           <Routes>
           <Route path="/" element={<Dashboard/>}/>
           <Route path="/team" element={<Team/>}/>
@@ -61,6 +64,9 @@ function App() {
           <Route path="/employee" element = {<Profile2/>}/>
           <Route path="/employee/profilelistview" element = {<ProfileListView/>}/>
           <Route path="/addUsers" element={<AddUsers/>}></Route>
+          <Route path="/addTeam" element={<AddTeam/>}></Route>
+          <Route path="/recommendation" element={<Recommendation/>}></Route>
+          <Route path="/filteredEmployees" element={<FilteredEmployees/>}></Route>
           </Routes>
         </main>
       </div>

@@ -1,4 +1,4 @@
-import {Box, Button, Typography,InputLabel,FormControl,Select,MenuItem } from "@mui/material";
+import {Box, Button, Typography,InputLabel,FormControl,Select,MenuItem, IconButton } from "@mui/material";
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import {tokens} from "../../theme";
 import {mockDataContacts} from "../../data/mockData";
@@ -17,6 +17,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {useNavigate} from 'react-router-dom';
 import StatBox from "../../components/StatBox";
+import Axios from "axios"
+import CancelIcon from '@mui/icons-material/Cancel';
 
 
 function ProfileListView() {
@@ -25,6 +27,21 @@ function ProfileListView() {
   const [employeeView, setEmployeeView] = useState("");
   const [openEmployeeList, setOpenEmployeeList] = useState(false);
   const [openProfileList, setOpenProfileList] = useState(false);
+  const[designation,setDesignation] = useState([])
+  const fetchDesignation = async () => {
+    
+    const { data } = await Axios.get(
+      "http://192.168.100.121:8080/designation/findAll"
+    );
+    const designation = data;
+    setDesignation(designation);
+    console.log(designation);
+  };
+
+  useEffect(() => {
+    fetchDesignation();
+  }, []);
+
   const navigate = useNavigate();
   const handleEmployeeView = (event) => {
     setEmployeeView(event.target.value);
@@ -107,7 +124,7 @@ function ProfileListView() {
           {navigate("/employee")}
           </>
         )}
-            {datas.map((item) => {
+            {designation.map((item) => {
               return (
                 <Box
                   gridColumn="span 3"
@@ -124,6 +141,9 @@ function ProfileListView() {
 
                 >
                   <Box>
+                   <IconButton style={{bottom:"110px",marginRight:"2px"}}>
+                    <CancelIcon sx={{color:"red"}}/>
+                   </IconButton>
                     <img
                       alt="profile-user"
                       width="100px"
